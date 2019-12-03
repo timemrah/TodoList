@@ -1,0 +1,43 @@
+{
+    "lastInsertedListID": "3",
+    "deletedListsID": [],
+    "lists": {
+        "1": {
+            "title": "List 1",
+            "createAt": "03.12.2019-01:31:12",
+            "lastInsertedItemID": "2",
+            "deletedItemsID": [],
+            "items": {
+                "items": {
+                    "1": {
+                        "text": "Item 1 of List 1",
+                        "createAt": "03.12.2019-01:32:47"
+                    },
+                    "2": {
+                        "text": "Item 2 of List 1",
+                        "createAt": "03.12.2019-01:33:05"
+                    }
+                }
+            }
+        },
+        "2": {
+            "title": "List 2",
+            "createAt": "03.12.2019-01:34:44",
+            "lastInsertedItemID": "1",
+            "deletedItemsID": [],
+            "items": {
+                "1": {
+                    "text": "Item 1 of List 2",
+                    "createAt": "03.12.2019-01:35:01"
+                }
+            }
+        },
+        "3": {
+            "title": "New List 3",
+            "createAt": 1575414835045,
+            "lastInsertedItemID": null,
+            "deletedItemsID": [],
+            "items": {}
+        }
+    }
+}
