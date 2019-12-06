@@ -1,43 +1,49 @@
 {
-    "lastInsertedListID": "3",
+    "lastInsertedListID": "2",
     "deletedListsID": [],
     "lists": {
         "1": {
-            "title": "List 1",
-            "createAt": "03.12.2019-01:31:12",
-            "lastInsertedItemID": "2",
-            "deletedItemsID": [],
-            "items": {
-                "items": {
-                    "1": {
-                        "text": "Item 1 of List 1",
-                        "createAt": "03.12.2019-01:32:47"
-                    },
-                    "2": {
-                        "text": "Item 2 of List 1",
-                        "createAt": "03.12.2019-01:33:05"
-                    }
-                }
-            }
-        },
-        "2": {
-            "title": "List 2",
-            "createAt": "03.12.2019-01:34:44",
-            "lastInsertedItemID": "1",
-            "deletedItemsID": [],
-            "items": {
-                "1": {
-                    "text": "Item 1 of List 2",
-                    "createAt": "03.12.2019-01:35:01"
-                }
-            }
-        },
-        "3": {
-            "title": "New List 3",
-            "createAt": 1575414835045,
+            "id": 1,
+            "title": "Bu Hafta Yapılacaklar Listesi",
+            "createAt": 1575603640202,
+            "editAt": 1575603679840,
             "lastInsertedItemID": null,
             "deletedItemsID": [],
             "items": {}
+        },
+        "2": {
+            "id": 2,
+            "title": "Market Alışverişi",
+            "createAt": 1575603708609,
+            "editAt": null,
+            "lastInsertedItemID": "3",
+            "deletedItemsID": [],
+            "items": {
+                "1": {
+                    "id": 1,
+                    "listID": "2",
+                    "text": "Ekmek",
+                    "mark": false,
+                    "createAt": 1575603721704,
+                    "editAt": null
+                },
+                "2": {
+                    "id": 2,
+                    "listID": "2",
+                    "text": "Salatalık",
+                    "mark": false,
+                    "createAt": 1575603735168,
+                    "editAt": null
+                },
+                "3": {
+                    "id": 3,
+                    "listID": "2",
+                    "text": "Makarna",
+                    "mark": false,
+                    "createAt": 1575603743414,
+                    "editAt": null
+                }
+            }
         }
     }
 }

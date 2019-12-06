@@ -1,0 +1,153 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "® MET - Todolist API",
+        "description": "Birden fazla todolist ve maddelerini organize edebileceğiniz todolist projesi API dökümantasyonudur.",
+        "version": "v0.1 Beta"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+
+        "/lists": {
+            "get": {
+                "operationId": "getAllLists",
+                "tags": ["lists"],
+                "summary": "Tüm Listeleri Getir",
+                "description": "Tüm yapılacaklar listelerini ve her bir maddesini getirir.",
+                "parameters": [],
+                "responses": {
+                    "200": { "description": "Sunucu cevap verdi"},
+                    "404": { "description": "Sunucu bu isteğe yanıt vermiyor" }
+                }
+            }
+        },
+
+        "/list": {
+            "post": {
+                "operationId": "insertList",
+                "tags": ["list"],
+                "summary": "Yeni Liste Ekle",
+                "description": "Yeni bir yapılacaklar listesi oluşturur.",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "description": "Liste adı",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Sunucu cevap verdi"},
+                    "404": { "description": "Sunucu bu isteğe yanıt vermiyor" }
+                }
+            }
+        },
+
+        "/list/{listID}": {
+            "get": {
+                "operationId": "getOneListByID",
+                "tags": ["list"],
+                "summary": "Liste Getir",
+                "description": "Belirtilen ID değerine göre bir liste ve maddelerini getirir.",
+                "parameters": [
+                    {
+                        "name": "listID",
+                        "in": "path",
+                        "description": "Liste ID'si ile değer döndürür.",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Sunucu cevap verdi"},
+                    "404": { "description": "Sunucu bu isteğe yanıt vermiyor" }
+                }
+            },
+            "put": {
+                "operationId": "updateOneListByID",
+                "tags": ["list"],
+                "summary": "Liste Güncelle",
+                "description": "Belirtilen ID değerine göre bir listenin bilgilerini günceller",
+                "consumes": [ "application/x-www-form-urlencoded"],
+                "parameters": [
+                    {
+                        "name": "listID",
+                        "in": "path",
+                        "description": "Liste ID'si ile değer döndürür.",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "description": "Liste adını günceller",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Sunucu cevap verdi"},
+                    "404": { "description": "Sunucu bu isteğe yanıt vermiyor" }
+                }
+            },
+            "delete": {
+                "operationId": "deleteListByID",
+                "tags": ["list"],
+                "summary": "Liste Sil",
+                "description": "Belirtilen ID değerine göre bir liste siler.",
+                "parameters": [
+                    {
+                        "name": "listID",
+                        "in": "path",
+                        "description": "Liste ID'si ile listeyi siler.",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Sunucu cevap verdi"},
+                    "404": { "description": "Sunucu bu isteğe yanıt vermiyor" }
+                }
+            }
+        },
+
+        "/item/{listID}": {
+            "post": {
+                "operationId": "insertItem",
+                "tags": ["item"],
+                "summary": "Listeye Yeni Madde Ekle",
+                "description": "Yeni bir yapılacaklar listesi oluşturur.",
+                "parameters": [
+                    {
+                        "name": "listID",
+                        "in": "path",
+                        "description": "Liste ID'si ile maddenin ekleneceği listeyi belirler.",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "text",
+                        "in": "formData",
+                        "description": "Madde içeriği",
+                        "required": true,
+                        "type": "string"
+                    }
+
+                ],
+                "responses": {
+                    "200": { "description": "Sunucu cevap verdi"},
+                    "404": { "description": "Sunucu bu isteğe yanıt vermiyor" }
+                }
+            }
+        }
+    }
+}
