@@ -27,11 +27,11 @@ function List(params){ let List = {};
 
         console.log(req.method + ': ' + req.originalUrl + ' -> Yeni liste ekle');
 
-        let listTitle = req.body.title || false;
-        //let listTitle = "Yeni Liste";
+        let title       = req.body.title || false;
+        let description = req.body.description || false;
 
         //Check title and error answer
-        if(!listTitle){
+        if(!title){
             res.json(tools.api.false('undefinedTitle', 'liste adı belirtilmemiş!'));
             return false;
         }
@@ -45,13 +45,17 @@ function List(params){ let List = {};
             newID = parseInt(todoListsDB.lastInsertedListID) + 1;
         }
 
+        let row = Object.keys(todoListsDB.lists).length + 1;
+
         //Last inserted ID record to database object
         todoListsDB.lastInsertedListID = newID.toString();
 
         //Create new list data
         let newList = {
             id : newID,
-            title : listTitle,
+            row : row,
+            title : title,
+            description : description,
             createAt : Date.now(),
             editAt : null,
             lastInsertedItemID : null,
@@ -116,19 +120,19 @@ function List(params){ let List = {};
 
         console.log(req.method + ': ' + req.originalUrl + ' -> Liste güncelle');
 
-        let listID = req.params.listID || false;
-        //let title = req.query.title || false;
+        let listID      = req.params.listID || false;
+        let title       = req.body.title || false;
+        let description = req.body.description || false;
 
-        let listTitle = req.body.title;
 
         //Check ID and error answer
         if(!listID){
-            res.json(tools.api.false('undefinedListID', 'ID değeri belirtilmemiş'));
+            res.json(tools.api.false('undefinedListID', 'ID belirtilmemiş'));
             return false;
         }
 
         //Check title and error answer
-        if(!listTitle){
+        if(!title){
             res.json(tools.api.false('undefinedTitle', 'liste adı belirtilmemiş'));
             return false;
         }
@@ -142,8 +146,12 @@ function List(params){ let List = {};
             return false;
         }
 
+        //Select list and update
         let selectedList    = todoListsDB.lists[listID];
-        selectedList.title  = listTitle;
+        selectedList.title  = title;
+        if(description){ //Update the description if there is.
+            selectedList.description  = description;
+        }
         selectedList.editAt = Date.now();
 
         //Create JSON string for database with lists database object.
@@ -161,6 +169,59 @@ function List(params){ let List = {};
             //Success Answer
             res.json(tools.api.true('success', 'liste güncellendi', selectedList));
         });
+
+    };
+
+
+
+
+    List.sort = (req, res) => {
+
+        console.log(req.method + ': ' + req.originalUrl + ' -> Liste sırala');
+
+        let listID  = req.params.listID || false;
+        let listNewRow = req.body.row || false;
+
+        //Check request data and error answer
+        if(!listID){
+            res.json(tools.api.false('undefinedListID', 'ID belirtilmemiş'));
+            return false;
+        }
+        if(!listNewRow){
+            res.json(tools.api.false('undefinedRow', 'row belirtilmemiş'));
+            return false;
+        }
+
+        //Access to todoLists database
+        let todoListsDB = require(List.dbPath);
+
+        //Check listID in the database and error answer
+        if(todoListsDB.lists[listID] === undefined){
+            res.json(tools.api.false('notFound', 'liste bulunamadı'));
+            return false;
+        }
+
+
+        //Row process
+        tools.reSortObject(todoListsDB.lists, listID, listNewRow, 'id', 'row');
+
+
+        //Create JSON string for database with lists database object.
+        let listsJsonString = JSON.stringify(todoListsDB);
+
+        //New string of JSON write to the database
+        fs.writeFile(List.dbPath, listsJsonString,err => {
+
+            //Check Err and error answer
+            if(err){
+                res.json(tools.api.false('dbWriteError', 'veritabanına kayıt başarısız', err));
+                return false;
+            }
+
+            //Success Answer
+            res.json( tools.api.true('success', 'liste sırası güncellendi'));
+        });
+
 
     };
 
@@ -193,10 +254,19 @@ function List(params){ let List = {};
         delete todoListsDB.lists[listID];
 
         //Record deleted ID to database object
-        todoListsDB.deletedListsID.push(parseInt(listID));
+        todoListsDB.allowListsID.push(parseInt(listID));
 
         //deletedListID order by asc for database record
-        todoListsDB.deletedListsID.sort((a, b) => a - b);
+        todoListsDB.allowListsID.sort((a, b) => a - b);
+
+        //Rebuild row data of lists
+        for(let id in todoListsDB.lists){
+            let list = todoListsDB.lists[id];
+            if(list.row > deleteList.row){
+                console.log("listID:" + id + ': list.row --' + (list.row-1));
+                list.row--;
+            }
+        }
 
         //Create JSON string for database with lists database object.
         let listsJsonString = JSON.stringify(todoListsDB);

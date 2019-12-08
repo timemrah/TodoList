@@ -1,0 +1,12 @@
+.list{ background-color: #d0cd5d; margin: 20px; box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.1);  }
+.list header{ background-color: rgba(0,0,0,0.1); }
+.list header h4{ margin: 0 0 0 15px; padding: 5px 0 5px 0; font-size: 20px; }
+.list main{ padding: 5px;}
+
+.list-group{}
+.list-group-item{ background-color: transparent; border:0; padding: 0.5rem; }
+
+.fa-trash-alt{ cursor: pointer; margin: 0.6rem 0.5rem 0.5rem 0.5rem; }
+.fa-plus{ cursor: pointer; margin: 0.7rem 0.5rem 0.3rem 0.5rem; }
+
+label{ margin: 0; padding: 0; }

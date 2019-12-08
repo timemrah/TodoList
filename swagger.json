@@ -39,6 +39,13 @@
                         "description": "Liste adı",
                         "required": true,
                         "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Liste açıklaması",
+                        "required": false,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -90,6 +97,13 @@
                         "description": "Liste adını günceller",
                         "required": true,
                         "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Liste açıklaması",
+                        "required": false,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -107,6 +121,37 @@
                         "name": "listID",
                         "in": "path",
                         "description": "Liste ID'si ile listeyi siler.",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Sunucu cevap verdi"},
+                    "404": { "description": "Sunucu bu isteğe yanıt vermiyor" }
+                }
+            }
+        },
+
+        "/list/{listID}/sort" : {
+            "put": {
+                "operationId": "listSort",
+                "tags": ["list"],
+                "summary": "Listenin Sırasını Değiştir",
+                "description": "Listenin sırası değiştirmeye yarar.",
+                "parameters": [
+                    {
+                        "name": "listID",
+                        "in": "path",
+                        "description": "Liste ID'si ile hangi listenin sırasının değişeceğini belirler",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "row",
+                        "in": "formData",
+                        "description": "Sırası değişen listenin yeni aldığı sıra numarası",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
@@ -142,6 +187,175 @@
                         "type": "string"
                     }
 
+                ],
+                "responses": {
+                    "200": { "description": "Sunucu cevap verdi"},
+                    "404": { "description": "Sunucu bu isteğe yanıt vermiyor" }
+                }
+            }
+        },
+
+        "/item/{listID}/{itemID}": {
+            "get": {
+                "operationId": "getOneItemByListAndItemID",
+                "tags": ["item"],
+                "summary": "Madde Getir",
+                "description": "Yanlıcaz seçilen maddenin detayını görüntüler.",
+                "parameters": [
+                    {
+                        "name": "listID",
+                        "in": "path",
+                        "description": "Seçilecek maddenin bulunduğu listeyi belirler",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "itemID",
+                        "in": "path",
+                        "description": "Seçilecek maddeyi belirler",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Sunucu cevap verdi"},
+                    "404": { "description": "Sunucu bu isteğe yanıt vermiyor" }
+                }
+            },
+            "put": {
+                "operationId": "updateItem",
+                "tags": ["item"],
+                "summary": "Madde Güncelle",
+                "description": "Seçilen maddenin içeriğini günceller",
+                "parameters": [
+                    {
+                        "name": "listID",
+                        "in": "path",
+                        "description": "Seçilecek maddenin bulunduğu listeyi belirler",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "itemID",
+                        "in": "path",
+                        "description": "Seçilecek maddeyi belirler",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "text",
+                        "in": "formData",
+                        "description": "Madde içeriği",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Sunucu cevap verdi"},
+                    "404": { "description": "Sunucu bu isteğe yanıt vermiyor" }
+                }
+            },
+            "delete": {
+                "operationId": "deleteItemByListAndItemID",
+                "tags": ["item"],
+                "summary": "Madde Sil",
+                "description": "Belirtilen ID değerlerine göre bir madde siler.",
+                "parameters": [
+                    {
+                        "name": "listID",
+                        "in": "path",
+                        "description": "Liste ID'si ile silinecek maddenin listesini bulur.",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "itemID",
+                        "in": "path",
+                        "description": "Item ID'si ile maddeyi siler.",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Sunucu cevap verdi"},
+                    "404": { "description": "Sunucu bu isteğe yanıt vermiyor" }
+                }
+            }
+        },
+        "/item/{listID}/{itemID}/sort" : {
+            "put": {
+                "operationId": "itemSort",
+                "tags": ["item"],
+                "summary": "Maddenin Sırasını Değiştir",
+                "description": "Listenin sırası değiştirmeye yarar.",
+                "parameters": [
+                    {
+                        "name": "listID",
+                        "in": "path",
+                        "description": "Liste ID'si ile hangi listedeki maddelerin sıralanacağını belirler",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "itemID",
+                        "in": "path",
+                        "description": "Item ID'si ile hangi maddenin sırasının değişeceğini belirler",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "row",
+                        "in": "formData",
+                        "description": "Sırası değişen maddenin yeni aldığı sıra numarası",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Sunucu cevap verdi"},
+                    "404": { "description": "Sunucu bu isteğe yanıt vermiyor" }
+                }
+            }
+        },
+        "/item/{listID}/{itemID}/mark" : {
+            "put": {
+                "operationId": "itemMark",
+                "tags": ["item"],
+                "summary": "Maddeyi İşaretle",
+                "description": "Maddenin işaretlenmesini sağlar",
+                "parameters": [
+                    {
+                        "name": "listID",
+                        "in": "path",
+                        "description": "Liste ID'si ile hangi listedeki maddenin işaretleneceğini belirler",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "itemID",
+                        "in": "path",
+                        "description": "Item ID'si ile hangi maddenin işaretleneceğini belirler",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "mark",
+                        "in": "formData",
+                        "description": "",
+                        "required": true,
+                        "type": "boolean"
+                    }
                 ],
                 "responses": {
                     "200": { "description": "Sunucu cevap verdi"},

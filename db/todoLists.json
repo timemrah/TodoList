@@ -1,49 +1,95 @@
 {
-    "lastInsertedListID": "2",
-    "deletedListsID": [],
+    "lastInsertedListID": "19",
+    "allowListsID": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        10,
+        11,
+        17
+    ],
     "lists": {
-        "1": {
-            "id": 1,
-            "title": "Bu Hafta Yapılacaklar Listesi",
-            "createAt": 1575603640202,
-            "editAt": 1575603679840,
+        "14": {
+            "id": 14,
+            "row": 3,
+            "title": "aaaaaaaa",
+            "description": false,
+            "createAt": 1575661577318,
+            "editAt": null,
             "lastInsertedItemID": null,
             "deletedItemsID": [],
             "items": {}
         },
-        "2": {
-            "id": 2,
-            "title": "Market Alışverişi",
-            "createAt": 1575603708609,
+        "15": {
+            "id": 15,
+            "row": 4,
+            "title": "sssssssssss",
+            "description": false,
+            "createAt": 1575661579367,
             "editAt": null,
-            "lastInsertedItemID": "3",
+            "lastInsertedItemID": null,
             "deletedItemsID": [],
+            "items": {}
+        },
+        "16": {
+            "id": 16,
+            "row": 1,
+            "title": "ddddddddd",
+            "description": false,
+            "createAt": 1575661583211,
+            "editAt": null,
+            "lastInsertedItemID": "5",
+            "deletedItemsID": [
+                3,
+                3,
+                3,
+                4,
+                5
+            ],
             "items": {
                 "1": {
                     "id": 1,
-                    "listID": "2",
-                    "text": "Ekmek",
-                    "mark": false,
-                    "createAt": 1575603721704,
-                    "editAt": null
+                    "listID": "16",
+                    "row": 1,
+                    "text": "Madde 1 güncellendi",
+                    "mark": true,
+                    "createAt": 1575667965503,
+                    "editAt": 1575668978964
                 },
                 "2": {
                     "id": 2,
-                    "listID": "2",
-                    "text": "Salatalık",
-                    "mark": false,
-                    "createAt": 1575603735168,
-                    "editAt": null
-                },
-                "3": {
-                    "id": 3,
-                    "listID": "2",
-                    "text": "Makarna",
-                    "mark": false,
-                    "createAt": 1575603743414,
+                    "listID": "16",
+                    "row": 2,
+                    "text": "madde 2",
+                    "mark": true,
+                    "createAt": 1575679539898,
                     "editAt": null
                 }
             }
+        },
+        "18": {
+            "id": 18,
+            "row": 4,
+            "title": "gggggggggg",
+            "description": false,
+            "createAt": 1575661717572,
+            "editAt": null,
+            "lastInsertedItemID": null,
+            "deletedItemsID": [],
+            "items": {}
+        },
+        "19": {
+            "id": 19,
+            "row": 5,
+            "title": "Yeni Liste",
+            "description": false,
+            "createAt": 1575662702864,
+            "editAt": null,
+            "lastInsertedItemID": null,
+            "deletedItemsID": [],
+            "items": {}
         }
     }
 }
